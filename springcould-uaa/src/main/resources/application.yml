@@ -1,0 +1,17 @@
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  typeAliasesPackage: com.zy.uua.pojo
+server:
+  port: 9999
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/useunicode?useUnicode=true&characterEncoding=utf8
+    username: root
+  application:
+    name: uaa-service
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
