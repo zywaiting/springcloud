@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>xin.zhuyao</groupId>
-    <artifactId>springcould</artifactId>
+    <artifactId>springcloud</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>springcloud-server</module>
-        <module>springcould-uaa</module>
-        <module>springcould-userservice</module>
+        <module>springcloud-uaa</module>
+        <module>springcloud-userservice</module>
     </modules>
 
 
