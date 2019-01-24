@@ -1,5 +1,6 @@
 package com.zhuyao.userservice.service;
 
+import com.zhuyao.userservice.dto.ReturnUserDTO;
 import com.zhuyao.userservice.dto.UserLoginDTO;
 
 /**
@@ -9,7 +10,11 @@ import com.zhuyao.userservice.dto.UserLoginDTO;
  * @Description
  */
 public interface UserService {
-    void insertUser(String username,String password);
+    /**
+     * 用户注册
+     * @param userLoginDTO
+     */
+    Integer insertUser(UserLoginDTO userLoginDTO);
 
-    UserLoginDTO login(String username, String password);
+    ReturnUserDTO login(UserLoginDTO userLoginDTO);
 }

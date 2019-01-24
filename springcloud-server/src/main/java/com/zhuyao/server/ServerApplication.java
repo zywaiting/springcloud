@@ -1,8 +1,10 @@
 package com.zhuyao.server;
 
+import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @Author: zy
@@ -10,6 +12,8 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
  * @Version 1.0
  * @Description
  */
+@Configuration
+@EnableApolloConfig
 @SpringBootApplication
 @EnableEurekaServer
 public class ServerApplication {

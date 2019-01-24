@@ -1,6 +1,7 @@
 package com.zhuyao.userservice.service.impl;
 
 import com.zhuyao.userservice.client.AuthServiceClient;
+import com.zhuyao.userservice.dto.ReturnUserDTO;
 import com.zhuyao.userservice.dto.UserLoginDTO;
 import com.zhuyao.userservice.exception.UserLoginException;
 import com.zhuyao.userservice.mapper.UserMapper;
@@ -24,31 +25,31 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private AuthServiceClient client;
 
-    public void insertUser(String username, String password) {
-        User user=new User();
-        user.setUsername(username);
-        user.setPassword(BPwdEncoderUtil.BCryptPassword(password));
-        userMapper.insertUser(user);
+    public Integer insertUser(UserLoginDTO userLoginDTO) {
+        //TODO 验证码
+        User user = new User();
+        user.setUsername(userLoginDTO.getUsername());
+        user.setPassword(BPwdEncoderUtil.BCryptPassword(userLoginDTO.getPassword()));
+        return userMapper.insertUser(user);
     }
 
-    public UserLoginDTO login(String username,String password){
-        User user=userMapper.findByUsername(username);
+    public ReturnUserDTO login(UserLoginDTO userLoginDTO){
+        User user=userMapper.findByUsername(userLoginDTO.getUsername());
         if (null == user) {
             throw new UserLoginException("error username");
         }
-        if(!BPwdEncoderUtil.matches(password,user.getPassword())){
+        if(!BPwdEncoderUtil.matches(userLoginDTO.getPassword(),user.getPassword())){
             throw new UserLoginException("error password");
         }
         // 获取token
-        JWT jwt=client.getToken("Basic dXNlci1zZXJ2aWNlOjEyMzQ1Ng==","password",username,password);
+        JWT jwt=client.getToken("Basic dXNlci1zZXJ2aWNlOjEyMzQ1Ng==","password",userLoginDTO.getUsername(),userLoginDTO.getPassword());
         // 获得用户菜单
         if(jwt==null){
             throw new UserLoginException("error internal");
         }
-        UserLoginDTO userLoginDTO=new UserLoginDTO();
-        userLoginDTO.setJwt(jwt);
-        userLoginDTO.setUser(user);
-        return userLoginDTO;
-
+        ReturnUserDTO returnUserDTO=new ReturnUserDTO();
+        returnUserDTO.setJwt(jwt);
+        returnUserDTO.setUser(user);
+        return returnUserDTO;
     }
 }

@@ -1,33 +1,32 @@
 package com.zhuyao.userservice.dto;
 
-import com.zhuyao.userservice.pojo.JWT;
-import com.zhuyao.userservice.pojo.User;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.FieldDefaults;
+
+import java.io.Serializable;
 
 /**
  * @Author: zy
- * @Date: 2019/1/23 16:38
+ * @Date: 2019/1/24 13:02
  * @Version 1.0
  * @Description
  */
-public class UserLoginDTO {
+@Setter
+@Getter
+@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class UserLoginDTO implements Serializable {
 
-    private JWT jwt;
+    @ApiModelProperty(value = "用户名字", dataType = "String")
+    String username;
 
-    private User user;
+    @ApiModelProperty(value = "用户密码", dataType = "String")
+    String password;
 
-    public JWT getJwt() {
-        return jwt;
-    }
-
-    public void setJwt(JWT jwt) {
-        this.jwt = jwt;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+    @ApiModelProperty(value = "验证码", dataType = "String")
+    String verificationCode;
 }

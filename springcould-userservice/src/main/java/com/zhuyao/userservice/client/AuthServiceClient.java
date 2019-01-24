@@ -3,6 +3,7 @@ package com.zhuyao.userservice.client;
 
 import com.zhuyao.userservice.client.hystrix.AuthServiceHystrix;
 import com.zhuyao.userservice.pojo.JWT;
+import com.zhuyao.userservice.pojo.User;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;

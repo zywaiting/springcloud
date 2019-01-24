@@ -1,5 +1,6 @@
 package com.zhuyao.userservice.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,6 +17,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
  */
 @Configuration
 @EnableResourceServer
+@Slf4j
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Autowired
     TokenStore tokenStore;
@@ -24,11 +26,12 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/user/login","/user/register").permitAll()
+                .regexMatchers(".*swagger.*",".*v2.*",".*webjars.*","/user/login.*","/user/registry.*","/user/test.*").permitAll()
                 .antMatchers("/**").authenticated();
     }
 
     public void configure(ResourceServerSecurityConfigurer resources) {
-        resources.tokenStore(tokenStore);
+        log.info("Configuring ResourceServerSecurityConfigurer ");
+        resources.resourceId("user-service").tokenStore(tokenStore);
     }
 }

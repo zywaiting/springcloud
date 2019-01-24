@@ -1,13 +1,14 @@
 package com.zhuyao.userservice.controller;
 
+import com.zhuyao.userservice.dto.ReturnUserDTO;
 import com.zhuyao.userservice.dto.UserLoginDTO;
 import com.zhuyao.userservice.service.UserService;
-import com.zhuyao.userservice.service.impl.UserServiceImpl;
+import com.zhuyao.userservice.utils.responsemessage.ResponseMessageUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Author: zy
@@ -17,20 +18,27 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/user")
+@Slf4j
+@Api(value = "用户登录注册", description = "用于用户登录注册")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
     @PostMapping("/register")
-    public void postUser(@RequestParam("username") String username , @RequestParam("password") String password){
+    @ApiOperation(value = "用户注册", notes = "用于用户注册")
+    public ResponseMessageUtils<?> postUser(@RequestBody UserLoginDTO userLoginDTO){
         //参数判断，省略
-        userService.insertUser(username,password);
+        Integer integer = userService.insertUser(userLoginDTO);
+        if (integer > 0) {
+            return ResponseMessageUtils.ok();
+        }
+        return ResponseMessageUtils.error("注册失败！",201);
     }
 
     @PostMapping("/login")
-    public UserLoginDTO login(@RequestParam("username") String username , @RequestParam("password") String password){
-        //参数判断，省略
-        return userService.login(username,password);
+    @ApiOperation(value = "用户登录", notes = "用于用户登录")
+    public ResponseMessageUtils<ReturnUserDTO> login(@RequestBody UserLoginDTO userLoginDTO){
+        return ResponseMessageUtils.ok(userService.login(userLoginDTO));
     }
 }

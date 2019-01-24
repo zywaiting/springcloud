@@ -2,6 +2,7 @@ package com.zhuyao.userservice.client.hystrix;
 
 import com.zhuyao.userservice.client.AuthServiceClient;
 import com.zhuyao.userservice.pojo.JWT;
+import com.zhuyao.userservice.pojo.User;
 import org.springframework.stereotype.Component;
 
 /**

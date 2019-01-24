@@ -21,7 +21,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
     private UserMapper userMapper;
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User byUsername = userMapper.findByUsername(username);
-        return byUsername;
+        User user = userMapper.findByUsername(username);
+        return user;
     }
 }

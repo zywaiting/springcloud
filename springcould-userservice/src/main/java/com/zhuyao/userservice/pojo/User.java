@@ -1,5 +1,8 @@
 package com.zhuyao.userservice.pojo;
 
+import io.swagger.annotations.ApiModelProperty;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -13,76 +16,42 @@ import java.util.List;
  * @Version 1.0
  * @Description
  */
+@Setter
+@Getter
+@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class User implements UserDetails, Serializable {
 
-    private Long id;
+    @ApiModelProperty(value = "ID", dataType = "Long")
+    Long id;
 
+    @ApiModelProperty(value = "用户名字", dataType = "String")
+    String username;
 
-    private String username;
+    @ApiModelProperty(value = "用户密码", dataType = "String")
+    String password;
 
-
-    private String password;
-
-    private List<Role> authorities;
-
-
-    public User() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
-    }
-
-    public void setAuthorities(List<Role> authorities) {
-        this.authorities = authorities;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    @ApiModelProperty(value = "用户权限", dataType = "List")
+    List<Role> authorities;
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return false;
     }
-
-
 }
 

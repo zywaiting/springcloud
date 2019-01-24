@@ -1,5 +1,10 @@
 package com.zhuyao.userservice.pojo;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 import org.springframework.security.core.GrantedAuthority;
 
 /**
@@ -8,27 +13,19 @@ import org.springframework.security.core.GrantedAuthority;
  * @Version 1.0
  * @Description
  */
+@Setter
+@Getter
+@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Role implements GrantedAuthority {
 
-    private Long id;
+    Long id;
 
-    private String name;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    String name;
 
     @Override
     public String getAuthority() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     @Override
