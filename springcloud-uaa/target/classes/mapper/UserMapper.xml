@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhuyao.uaa.mapper.UserMapper">
+
+    <resultMap id="userMapper" type="com.zhuyao.uaa.pojo.User">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <collection property="authorities" ofType="com.zhuyao.uaa.pojo.Role">
+            <id property="id" column="id"/>
+            <result property="name" column="name"/>
+        </collection>
+    </resultMap>
+    <select id="findByUsername" resultMap="userMapper">
+        SELECT `user`.id,`user`.username,`user`.`password`,role.id,role.`name` FROM `user`,role,user_role
+ WHERE `user_role`.user_id = `user`.id AND `user_role`.role_id = role.id AND `user`.username = #{username}
+    </select>
+</mapper>

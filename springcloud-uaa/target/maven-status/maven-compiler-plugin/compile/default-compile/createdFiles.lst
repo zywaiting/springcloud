@@ -1,0 +1,7 @@
+com\zhuyao\uaa\config\WebSecurityConfig.class
+com\zhuyao\uaa\service\impl\UserDetailServiceImpl.class
+com\zhuyao\uaa\pojo\Role.class
+com\zhuyao\uaa\pojo\User.class
+com\zhuyao\uaa\mapper\UserMapper.class
+com\zhuyao\uaa\config\OAuth2Config.class
+com\zhuyao\uaa\UaaServiceApplication.class

@@ -7,16 +7,21 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="springcloud-server" />
-        <module name="springcould-uaa" />
+        <module name="springcloud-userservice" />
         <module name="springcould-userservice" />
-        <module name="userservice" />
+      </profile>
+      <profile name="Annotation profile for springcould" enabled="true">
+        <sourceOutputDir name="../springcould-uaa/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../springcould-uaa/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="springcloud-uaa" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="springcloud-server" options="" />
-      <module name="springcould-uaa" options="" />
+      <module name="springcloud-uaa" options="" />
       <module name="springcould-userservice" options="" />
     </option>
   </component>
